@@ -53,6 +53,8 @@ WorldGlobals cg;
 WorldGlobals sg;
 WorldGlobals *wg;
 
+Random random;
+
 extern "C" {
 void __cdecl UnloadGlide();
 };

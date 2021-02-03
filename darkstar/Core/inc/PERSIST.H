@@ -18,7 +18,8 @@
 
 namespace Persistent
 {
-
+	class Base;
+	
 //--------------------------------------------------------------------
 // classes used to register Persistent classes:
 //--------------------------------------------------------------------
@@ -48,7 +49,7 @@ class DLLAPI AbstractClass
    //---------------------------------------------------------------
    // virtual methods created by template instantiation below:
    
-   virtual void * create() const = 0;
+   virtual Base * create() const = 0;
    virtual void   dump()   const = 0;
    virtual void   initFields() const = 0;
 
@@ -98,7 +99,7 @@ class DLLAPI AbstractTaggedClass : public AbstractClass
    //---------------------------------------------------------------
    // virtual methods created by template instantiation below:
    
-   virtual void * create() const = 0;
+   virtual Base * create() const = 0;
    virtual void   dump()   const = 0;
 	void linkTag();
 
@@ -121,8 +122,8 @@ class DLLAPI AbstractTaggedClass : public AbstractClass
    //---------------------------------------------------------------
    // Interface used by Persistent Base class to create objects:
    
-   static void* create( char const *className );
-   static void* create( int classTag );
+   static Base* create( char const *className );
+   static Base* create( int classTag );
    static void  initPersistFields();
 
    //---------------------------------------------------------------
@@ -155,7 +156,7 @@ class AbstractUntaggedClass : public AbstractClass
    //---------------------------------------------------------------
    // virtual methods created by template instantiation below:
    
-   virtual void * create() const = 0;
+   virtual Base * create() const = 0;
    virtual void   dump() const = 0;
 	void linkTag();
 
@@ -178,7 +179,7 @@ class AbstractUntaggedClass : public AbstractClass
    //---------------------------------------------------------------
    // Interface used by Persistent Base class to create objects:
    
-   static void*  create( StreamIO &stream, int *user );
+   static Base*  create( StreamIO &stream, int *user );
 
    //---------------------------------------------------------------
    // for debugging, a way to see what classes are registered:
@@ -190,17 +191,17 @@ class AbstractUntaggedClass : public AbstractClass
 // functions for creating registered Persistent classes:
 //--------------------------------------------------------------------
 
-inline void* create( const char *className )
+inline Base* create( const char *className )
 {
    return AbstractTaggedClass::create( className );
 }
 
-inline void* create( int classTag )
+inline Base* create( int classTag )
 { 
    return AbstractTaggedClass::create( classTag );
 }
 
-inline void* create( StreamIO& stream, int *user )
+inline Base* create( StreamIO& stream, int *user )
 { 
    return AbstractUntaggedClass::create( stream, user );
 }
@@ -234,9 +235,9 @@ class TaggedClass : public AbstractTaggedClass
       t::initPersistFields();
 #endif
    }
-   void* create() const
+   Base* create() const
    {
-      return (void *)(new t);
+      return (Base *)(new t);
    }
    void  dump()   const
    {
@@ -261,9 +262,9 @@ class UntaggedClass : public AbstractUntaggedClass
       convertClassName( typeid( t ).name(), name );
    }
 
-   void* create() const
+   Base* create() const
    {
-      return (void *)(new t);
+      return (Base *)(new t);
    }
    void  dump()   const
    {

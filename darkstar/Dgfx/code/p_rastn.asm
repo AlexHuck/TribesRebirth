@@ -27,6 +27,7 @@ fpConstant1div65536   dq 1.52587890625e-5
 _esp				dd ?
 _ebp				dd ?
 controlWord			dd 0F7FH	; round toward zero
+defControlWord		dd 027FH	; default
 
 .CODE
 
@@ -50,6 +51,7 @@ gfx_calc_int_poly_delta	PROC C \
 		fistp	nextVal
 		add		ebx, nextVal
 		mov		DWORD PTR [edx], ebx
+		fldcw	WORD PTR defControlWord
 		ret
 gfx_calc_int_poly_delta ENDP
 
@@ -70,6 +72,7 @@ gfx_calc_float_poly_delta PROC C \
 		fmul	DWORD PTR stepVal
 		faddp	st(1), st
 		fstp	DWORD PTR [ebx]
+		fldcw	WORD PTR defControlWord
 		ret
 gfx_calc_float_poly_delta ENDP
 
@@ -122,6 +125,7 @@ ENDIF
 		test	edx, edx
 		jnz		@@hasEdgeClip
 		mov		gfxRC.rc_nextEdgeHook, eax  ; no next edge clipper
+		fldcw	WORD PTR defControlWord
 		ret
 @@hasEdgeClip:
 		; set up edge list
@@ -131,6 +135,7 @@ ENDIF
 		sub		ecx, (EDGE_LIST PTR [edx]).e_top_y
 		lea		eax, [eax+ecx*4]
 		mov		gfxRC.rc_currentEdgeLine, eax
+		fldcw	WORD PTR defControlWord
 		ret
 ENDM
 
@@ -193,6 +198,7 @@ TRastX proc C
 		add		gfxRC.rc_currentEdgeLine, 4
 		jmp		@@startLoop
 @@endLoop:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -264,6 +270,7 @@ TRastXS proc C
 		add		gfxRC.rc_currentEdgeLine, 4
 		jmp		@@startLoop
 @@endLoop:
+		fldcw	WORD PTR defControlWord
 		mov		ecx, gfxSpan.sp_s
 		mov		esp, _esp
 		mov		gfxPRC.prc_iLeft, ecx
@@ -345,6 +352,7 @@ TRastXRGB proc C
 		add		gfxRC.rc_currentEdgeLine, 4
 		jmp		@@startLoop
 @@endLoop:
+		fldcw	WORD PTR defControlWord
 		mov		ecx, gfxSpan.sp_r
 		mov		edx, gfxSpan.sp_g
 		mov		edi, gfxSpan.sp_b
@@ -426,6 +434,7 @@ TRastXH proc C
 		add		gfxRC.rc_currentEdgeLine, 4
 		jmp		@@startLoop
 @@endLoop:
+		fldcw	WORD PTR defControlWord
 		mov		ecx, gfxSpan.sp_h
 		mov		esp, _esp
 		mov		gfxPRC.prc_hLeft, ecx
@@ -519,9 +528,9 @@ TRastXUV proc C
 		jmp		@@startLoop
 @@endLoop:
 		; store u and v back into gfxPRC
-
 		fstp	gfxPRC.prc_vLeft
 		fstp	gfxPRC.prc_uLeft
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -627,6 +636,7 @@ TRastXUVW proc C
 		fstp	gfxPRC.prc_wLeft
 		fstp	gfxPRC.prc_vLeft
 		fstp	gfxPRC.prc_uLeft
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -727,6 +737,7 @@ TRastXUVWH proc C
 		fstp	gfxPRC.prc_wLeft
 		fstp	gfxPRC.prc_vLeft
 		fstp	gfxPRC.prc_uLeft
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -819,6 +830,7 @@ TRastXUVS proc C
 		; restore values into the PRC
 		fstp	gfxPRC.prc_vLeft
 		fstp	gfxPRC.prc_uLeft
+		fldcw	WORD PTR defControlWord
 		mov		ecx, gfxSpan.sp_s
 		mov		esp, _esp
 		mov		gfxPRC.prc_iLeft, ecx
@@ -922,6 +934,7 @@ TRastXUVRGB proc C
 		; restore values into the PRC
 		fstp	gfxPRC.prc_vLeft
 		fstp	gfxPRC.prc_uLeft
+		fldcw	WORD PTR defControlWord
 		mov		ecx, gfxSpan.sp_r
 		mov		edx, gfxSpan.sp_g
 		mov		edi, gfxSpan.sp_b
@@ -1036,6 +1049,7 @@ TRastXUVWS proc C
 		fstp	gfxPRC.prc_wLeft
 		fstp	gfxPRC.prc_vLeft
 		fstp	gfxPRC.prc_uLeft
+		fldcw	WORD PTR defControlWord
 		mov		ecx, gfxSpan.sp_s
 		mov		esp, _esp
 		mov		gfxPRC.prc_iLeft, ecx
@@ -1178,6 +1192,7 @@ PRastXUV proc C
 		fstp	gfxPRC.prc_uRight
 		fstp	gfxPRC.prc_vLeft
 		fstp	gfxPRC.prc_uLeft
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -1314,6 +1329,7 @@ PRastXUVS proc C
 		fstp	gfxPRC.prc_uRight
 		fstp	gfxPRC.prc_vLeft
 		fstp	gfxPRC.prc_uLeft
+		fldcw	WORD PTR defControlWord
 		mov		gfxPRC.prc_iLeft, eax
 		mov		esp, _esp
 		pop		ebp
@@ -1486,6 +1502,7 @@ PRastXUVRGB proc C
 		fstp	gfxPRC.prc_uRight
 		fstp	gfxPRC.prc_vLeft
 		fstp	gfxPRC.prc_uLeft
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -1575,6 +1592,7 @@ PRastXS proc C
 		add		gfxRC.rc_currentEdgeLine, 4
 		jmp		@@startLoop
 @@endLoop:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -1685,6 +1703,7 @@ PRastXRGB proc C
 		add		gfxRC.rc_currentEdgeLine, 4
 		jmp		@@startLoop
 @@endLoop:
+		fldcw	WORD PTR defControlWord
 		mov		ecx, gfxSpan.sp_r
 		mov		edx, gfxSpan.sp_g
 		mov		edi, gfxSpan.sp_b
@@ -1771,6 +1790,7 @@ PRastXH proc C
 		add		gfxRC.rc_currentEdgeLine, 4
 		jmp		@@startLoop
 @@endLoop:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -1915,6 +1935,7 @@ PRastXUVW proc C
 		fstp	gfxPRC.prc_wLeft
 		fstp	gfxPRC.prc_vLeft
 		fstp	gfxPRC.prc_uLeft
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -2073,6 +2094,7 @@ PRastXUVWS proc C
 		fstp	gfxPRC.prc_wLeft
 		fstp	gfxPRC.prc_vLeft
 		fstp	gfxPRC.prc_uLeft
+		fldcw	WORD PTR defControlWord
 		mov		ecx, gfxSpan.sp_s
 		mov		esp, _esp
 		mov		gfxPRC.prc_iLeft, ecx
@@ -2230,6 +2252,7 @@ PRastXUVWH proc C
 		fstp	gfxPRC.prc_wLeft
 		fstp	gfxPRC.prc_vLeft
 		fstp	gfxPRC.prc_uLeft
+		fldcw	WORD PTR defControlWord
 		mov		ecx, gfxSpan.sp_s
 		mov		esp, _esp
 		mov		gfxPRC.prc_iLeft, ecx

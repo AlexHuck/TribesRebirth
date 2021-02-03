@@ -123,7 +123,7 @@ void FearGuiRadio::inspectRead(Inspect *insp)
 {
    Parent::inspectRead(insp);
    bool Set;
-   insp->read( IDSTR_AI_ACTIVE,            bool(Set) );
+   insp->read( IDSTR_AI_ACTIVE,            (Set) );
    set = Set;
 }   
 

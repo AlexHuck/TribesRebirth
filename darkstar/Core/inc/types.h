@@ -208,17 +208,6 @@ const UInt16	M_MAX_UINT16 =	0xffff;
 const UInt32	M_MAX_UINT32 =	0xffffffff;
 
 
-const Int8   INT8_MAX  = 127;
-const Int8   INT8_MIN  =-128;
-const UInt8  UINT8_MAX = 255;
-
-const Int16	 INT16_MAX = 32767;
-const Int16  INT16_MIN =-32768;
-const UInt16 UINT16_MAX= 0xFFFF;
-
-const Int32	 INT32_MAX = ((Int32)0x7FFFFFFF);
-const Int32	 INT32_MIN = ((Int32)0x80000000);
-const UInt32 UINT32_MAX= 0xFFFFFFFF;
 
 //---------------------------------------------------------------------------
 

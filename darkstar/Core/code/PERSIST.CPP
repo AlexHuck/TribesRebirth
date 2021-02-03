@@ -80,7 +80,7 @@ void AbstractTaggedClass::linkTag()
 	head = this;
 }
 
-void * AbstractTaggedClass::create( const char *className )
+Base * AbstractTaggedClass::create( const char *className )
 {
    // search for registered class with this name and, if found
    // use it to create the object:
@@ -92,7 +92,7 @@ void * AbstractTaggedClass::create( const char *className )
    return 0;
 }
 
-void * AbstractTaggedClass::create( int classTag )
+Base * AbstractTaggedClass::create( int classTag )
 {
    // search for registered class with this tag and, if found
    // use it to create the object:
@@ -184,7 +184,7 @@ void AbstractUntaggedClass::linkTag()
 	head = this;
 }
 
-void * AbstractUntaggedClass::create( StreamIO &stream, int *user )
+Base * AbstractUntaggedClass::create( StreamIO &stream, int *user )
 {
    // search for registered class with this stream and, if found
    // use it to create the object:
@@ -426,7 +426,7 @@ const char * Base::getClassName() const
    const char * name = typeid(*this).name();
    
    #ifdef _MSC_VER
-   char * pos = strstr(name, "class ");
+   const char * pos = strstr(name, "class ");
    if(pos)
       name += 6;
    #endif

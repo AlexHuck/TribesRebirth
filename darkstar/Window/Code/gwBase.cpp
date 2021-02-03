@@ -240,7 +240,7 @@ LRESULT CALLBACK WndTrap(int code, WPARAM wParam, LPARAM lParam)
 void GWWindow::hookCreate(GWWindow* window)
 {
 	hookWindow = window;
-	hookHandle = SetWindowsHookEx(WH_CBT,(HOOKPROC)WndTrap, hInstance,0);
+	hookHandle = SetWindowsHookEx(WH_CBT,(HOOKPROC)WndTrap, hInstance,GetCurrentThreadId());
 }
 
 void GWWindow::unhookCreate()

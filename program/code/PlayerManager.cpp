@@ -984,7 +984,7 @@ void PlayerTeamChangeEvent::unpack(SimManager *manager, Net::PacketStream *ps, B
 template <class T>
 static void pushFrontSLL( T * * listPtr, T * elemPtr )
 {
-   elemPtr->nextClient = * listPtr;
+   elemPtr->nextClient = dynamic_cast<PlayerManager::ClientRep*>(* listPtr);
    * listPtr = elemPtr;
 }
 
@@ -1003,7 +1003,7 @@ static bool unhookFromSLL( T * * listPtr, T * elemPtr, T * * freeList = 0 )
             pushFrontSLL( freeList, cl );
          return true;
       }
-      listPtr = &(cl->nextClient);
+      listPtr = reinterpret_cast<T**>(&(cl->nextClient));
    }
    return false;
 }

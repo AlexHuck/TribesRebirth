@@ -288,7 +288,7 @@ void FGUniversalButton::onAction()
 #ifdef _MSC_VER
       // microsoft compiler airo
       unsigned long (SimGui::Control::* fp)(SimObject *, unsigned long) = 
-         SimGui::Control::onMessage;
+         &SimGui::Control::onMessage;
       (this->*fp)(this, message);
 #else
       SimGui::Control::onMessage(this, message);

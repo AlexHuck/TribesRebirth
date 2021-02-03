@@ -2468,6 +2468,36 @@ static const char *c_getNextMountedItem(CMDConsole *, int, int argc, const char 
 	return "-1";
 }
 
+static const char* c_getItemState(CMDConsole*, int, int argc, const char** argv)
+{
+	if(argc != 3) {
+		Console->printf("wrong argcount to %s(player,imageSlot)", argv[0]);
+		return "-1";
+	}
+	if(Player* player = findPlayerObject(argv[1])) {
+		const int imageSlot = atoi(argv[2]);
+		if(imageSlot >= 0 && imageSlot < Player::MaxImageSlots) {
+			const Player::ItemImageEntry& entry = player->getItemImageEntry(imageSlot);
+			switch(entry.state)
+			{
+			case Player::ItemImageEntry::Reset: return "Reset";
+			case Player::ItemImageEntry::Idle: return "Idle";
+			case Player::ItemImageEntry::NoAmmo: return "NoAmmo";
+			case Player::ItemImageEntry::Activate: return "Activate";
+			case Player::ItemImageEntry::Ready: return "Ready";
+			case Player::ItemImageEntry::Fire: return "Fire";
+			case Player::ItemImageEntry::Reload: return "Reload";
+			case Player::ItemImageEntry::SpinUp: return "SpinUp";
+			case Player::ItemImageEntry::SpinDown: return "SpinDown";
+			case Player::ItemImageEntry::Deactivate: return "Deactivate";
+			}
+		}
+		else
+			Console->printf("%s: invalid imageSlot", argv[0]);
+	}
+	return "Reset";
+}
+
 static const char *c_useItem(CMDConsole *, int, int argc, const char **argv)
 {
 	// player item count
@@ -3943,6 +3973,7 @@ void FearPlugin::init()
 	console->addCommand(0, "Player::unmountItem", c_unmountItem);
 	console->addCommand(0, "Player::getMountedItem", c_getMountedItem);
 	console->addCommand(0, "Player::getNextMountedItem", c_getNextMountedItem);
+	console->addCommand(0, "Player::getItemState", c_getItemState);
 	console->addCommand(0, "Player::useItem", c_useItem);
 	console->addCommand(0, "Player::dropItem", c_dropItem);
 	console->addCommand(0, "Player::deployItem", c_deployItem);

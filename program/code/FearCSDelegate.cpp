@@ -182,7 +182,7 @@ bool FearCSDelegate::simConnect(const char *transportAddress)
    *ptr++ = '0';
    *ptr = 0;
    
-   bstream.writeString(buf);
+   bstream.writeString("1.11"); // TODO: Use 'buf' variable.
 
    bstream.writeString(Console->getVariable("Server::JoinPassword"));
    bstream.writeString(Console->getVariable("PCFG::Name"));

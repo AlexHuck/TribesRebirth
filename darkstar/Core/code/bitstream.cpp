@@ -3,6 +3,7 @@
 #include "m_trig.h"
 #include "tVector.h"
 #include <ctype.h>
+#include <cmath>
 
 // dummy class for writing vectors
 class Point3F
@@ -459,6 +460,7 @@ HuffmanProcessor::readHuffBuffer(BitStream* pStream,
 
    if (pStream->readFlag()) {
       Int32 len = pStream->readInt(8);
+      bool skip32 = false;
       for (int i = 0; i < len; i++) {
          Int32 index = 0;
          while (true) {
@@ -470,11 +472,13 @@ HuffmanProcessor::readHuffBuffer(BitStream* pStream,
                }
             } else {
                out_pBuffer[i] = m_huffLeaves[-(index+1)].symbol;
+               if(i == 0 && out_pBuffer[i] < 0) { --i; --len; skip32 = true; }
                break;
             }
          }
       }
       out_pBuffer[len] = '\0';
+      if(skip32) pStream->setCurPos(pStream->getCurPos() + 32);
       return true;
    } else {
       // Uncompressed string...

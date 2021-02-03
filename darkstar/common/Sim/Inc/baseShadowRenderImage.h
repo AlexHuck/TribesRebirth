@@ -4,6 +4,7 @@
 #include <sim.h>
 #include <ts_shadow.h>
 #include "simRenderGrp.h"
+#include "ts_shapeinst.h"
 
 class SimContainer;
 class SimTerrain;

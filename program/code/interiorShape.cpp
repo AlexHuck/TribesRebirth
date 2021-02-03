@@ -952,7 +952,7 @@ InteriorShape::inspectRead(Inspect *inspector)
 
       m_lightAnimParams.setSize(numAnimations);
       for (int i = 0; i < pLighting->lightList.size(); i++) {
-         char* pName;
+         const char* pName;
          int   index;
          LightAnimParam& rParams = m_lightAnimParams[i];
          
@@ -971,7 +971,7 @@ InteriorShape::inspectRead(Inspect *inspector)
       for (int i = 0; i < numAnimations; i++) {
          bool  dummyBool;
          float dummyFloat;
-         char* dummyPChar;
+         const char* dummyPChar;
          int   dummyInt;
          inspector->readDivider();
          inspector->readStringIndexDes(dummyPChar, dummyInt);

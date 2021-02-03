@@ -8,7 +8,20 @@
 #include <process.h>
 
 bool isWriteable(const char * file);
-bool boolify(const char * str);
+
+namespace
+{
+	bool boolify(const char * str)
+	{
+	   if(!str)
+	      return(false);
+	      
+	   if(!stricmp(str, "true") || !stricmp(str, "1"))
+	      return(true);
+	      
+	   return(false);
+	}
+}
 
 void FearMissionPlugin::init()
 {
@@ -624,15 +637,3 @@ bool isWriteable(const char * file)
       return(true);
    return(false);
 }
-
-bool boolify(const char * str)
-{
-   if(!str)
-      return(false);
-      
-   if(!stricmp(str, "true") || !stricmp(str, "1"))
-      return(true);
-      
-   return(false);
-}
-

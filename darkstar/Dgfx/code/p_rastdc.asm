@@ -34,6 +34,7 @@ v3					dq		0.0
 GFX_MAX_POLY_VERTEX  equ   100
 
 controlWord			dd		0F7FH	; round toward zero
+defControlWord		dd		027FH	; default
 fpcnst65536			dd		65536.0
 fpcnstnscale		dd		-65536.0
 fpcnstscale			dd		65536.0 ; used to be 16M, changed causa tex coords.
@@ -396,6 +397,7 @@ DeltaCalcTriUVQWS PROC C,
 		fstp	(GFXPolyDrawContext PTR [ebp]).pdc_w0
 		mov		eax, 1
 @@end:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -680,6 +682,7 @@ DeltaCalcTriUVQWH PROC C,
 		fstp	(GFXPolyDrawContext PTR [ebp]).pdc_w0
 		mov		eax, 1
 @@end:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -981,6 +984,7 @@ DeltaCalcTriUVWS PROC C,
 		fstp	(GFXPolyDrawContext PTR [ebp]).pdc_w0
 		mov		eax, 1
 @@end:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -1255,6 +1259,7 @@ DeltaCalcTriUVWH PROC C,
 		fstp	(GFXPolyDrawContext PTR [ebp]).pdc_w0
 		mov		eax, 1
 @@end:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -1456,6 +1461,7 @@ DeltaCalcTriWS PROC C,
 		fstp	(GFXPolyDrawContext PTR [ebp]).pdc_w0
 		mov		eax, 1
 @@end:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -1629,6 +1635,7 @@ DeltaCalcTriWH PROC C,
 		fstp	(GFXPolyDrawContext PTR [ebp]).pdc_w0
 		mov		eax, 1
 @@end:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -1845,6 +1852,7 @@ DeltaCalcTriUVW PROC C,
 		fstp	(GFXPolyDrawContext PTR [ebp]).pdc_w0
 		mov		eax, 1
 @@end:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -2068,6 +2076,7 @@ DeltaCalcTriUVQW PROC C,
 		fstp	(GFXPolyDrawContext PTR [ebp]).pdc_w0
 		mov		eax, 1
 @@end:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -2258,6 +2267,7 @@ DeltaCalcPolyUVQW PROC C,
 		fstp	(GFXPolyDrawContext PTR [edi]).pdc_w0
 		mov		eax, 1
 @@end:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -2362,6 +2372,7 @@ DeltaCalcPolyW PROC C,
 		fstp	(GFXPolyDrawContext PTR [edi]).pdc_w0
 		mov		eax, 1
 @@end:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -2658,6 +2669,7 @@ NewRasterizer PROC C
 		mov		edx, iy[ebx*4]
 		jmp		@@mainLoop
 @@end:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		pop		ebp
 		pop		edi
@@ -2776,6 +2788,7 @@ NewRasterizeSpans PROC C,
 		mov		ecx, [edx + ecx * 4]
 		jmp		@@loop
 @@done:
+		fldcw	WORD PTR defControlWord
 		mov		esp, _esp
 		mov		eax, saveBase
 		mov		gfxPDC.pdc_rowAddr, eax
