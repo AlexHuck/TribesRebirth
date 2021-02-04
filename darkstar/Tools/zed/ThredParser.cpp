@@ -57,7 +57,8 @@ void CThredParser::WritePolygon(ThredPolygon& Poly)
    WriteBool( CPOLYAPPLYAMBIENT, Poly.mApplyAmbient );
 
 	// write out the verts
-	for(int Current = 0; Current < Poly.NumberOfPoints; Current++ )
+   int Current;
+	for(Current = 0; Current < Poly.NumberOfPoints; Current++ )
 		WritePoint(CPOLYGONVERT, Poly.Points[Current]);
 
 	// write out the texture verts
@@ -131,7 +132,8 @@ int CThredParser::ReadPolygon(ThredPolygon& Poly)
    GetKeyBool( CPOLYAPPLYAMBIENT, Poly.mApplyAmbient );
    
 	// read in the verts
-	for(int Current = 0; Current < Poly.NumberOfPoints; Current++ )
+   int Current;
+	for(Current = 0; Current < Poly.NumberOfPoints; Current++ )
 		GetKeyPoint(CPOLYGONVERT, Poly.Points[Current]);
 
 	// read in the texture verts

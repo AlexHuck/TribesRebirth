@@ -273,7 +273,8 @@ ThredPolygon* CBspNode::SplitPolygon(ThredPolygon* SplitPolygon, ThredPolygon* N
 
 	// Loop through all the split polygon's vertices and create the back
 	// and front polygons, creating new vertices if we need them
-	for(int VertIndex = 0;VertIndex < SplitPolygon->NumberOfPoints;VertIndex++)
+	int VertIndex;
+	for(VertIndex = 0;VertIndex < SplitPolygon->NumberOfPoints;VertIndex++)
     {
 		// Check which side the point is on
 		SideCheck = ClassifyPoint(&SplitPolygon->Points[VertIndex]);

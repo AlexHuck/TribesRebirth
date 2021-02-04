@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30914.41
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tribes", "Tribes.vcxproj", "{F704E949-0515-4ACB-BE79-1436CE8303C7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Zed", "Zed.vcxproj", "{6AFE31B9-6774-4293-B56D-E8E08BCBE8AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,6 +17,10 @@ Global
 		{F704E949-0515-4ACB-BE79-1436CE8303C7}.Debug|x86.Build.0 = Debug|Win32
 		{F704E949-0515-4ACB-BE79-1436CE8303C7}.Release|x86.ActiveCfg = Release|Win32
 		{F704E949-0515-4ACB-BE79-1436CE8303C7}.Release|x86.Build.0 = Release|Win32
+		{6AFE31B9-6774-4293-B56D-E8E08BCBE8AE}.Debug|x86.ActiveCfg = Debug|Win32
+		{6AFE31B9-6774-4293-B56D-E8E08BCBE8AE}.Debug|x86.Build.0 = Debug|Win32
+		{6AFE31B9-6774-4293-B56D-E8E08BCBE8AE}.Release|x86.ActiveCfg = Release|Win32
+		{6AFE31B9-6774-4293-B56D-E8E08BCBE8AE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

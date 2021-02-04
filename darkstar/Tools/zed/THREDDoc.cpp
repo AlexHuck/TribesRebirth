@@ -6146,7 +6146,8 @@ void CTHREDDoc::RenderLights( CRenderCamera* Camera, int ViewType,
       return;
    
    // go through the lights - first unselected then selected ( so we can see them )
-	for( int Light = 0; Light < (*pLightArray).GetSize(); Light++ )
+   int Light;
+	for( Light = 0; Light < (*pLightArray).GetSize(); Light++ )
       (*pLightArray)[Light].renderLight( Camera, rc, ViewType, false );
 	for( Light = 0; Light < (*pLightArray).GetSize(); Light++ )
       (*pLightArray)[Light].renderLight( Camera, rc, ViewType, true );
@@ -7720,9 +7721,10 @@ BOOL CShapeState::CopyDetail( CShapeDetail * pDetail )
    // set the current brush to the regular brush ( default to this )
    pNew->mRegularBrush = pDetail->mRegularBrush;
    pNew->mCurrentBrush = &pNew->mRegularBrush;
-   
+
+   int count;
    // copy the arrays
-   for( int count = 0; count < pDetail->mLightArray.GetSize();count++ )
+   for( count = 0; count < pDetail->mLightArray.GetSize();count++ )
       pNew->mLightArray.Add( pDetail->mLightArray[count] );
    for( count = 0; count < pDetail->mBrushGroupArray.GetSize();count++ )
       pNew->mBrushGroupArray.Add( pDetail->mBrushGroupArray[ count ] );
@@ -8635,7 +8637,8 @@ BOOL CTHREDDoc::CheckExport( void )
                else
                {
                   // walk through and assign an id or fail
-                  for( int i = 0; i < lightNames.GetSize(); i++ )
+				   int i;
+                  for( i = 0; i < lightNames.GetSize(); i++ )
                   {
                      if( light.name == lightNames[i] )
                      {

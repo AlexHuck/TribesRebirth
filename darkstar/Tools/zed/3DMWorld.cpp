@@ -179,7 +179,8 @@ void C3DMWorld::DumpWorld(CString& Filename)
 	OutFile.WriteString(OutString);
 
 	// do the actual verts
-	for(int CurrentVert = 0; CurrentVert < NumberOfVerts; CurrentVert++ ) {
+	int CurrentVert;
+	for(CurrentVert = 0; CurrentVert < NumberOfVerts; CurrentVert++ ) {
 		OutString.Format("%lf %lf %lf\n", 
 			Verts[CurrentVert].X, Verts[CurrentVert].Y, Verts[CurrentVert].Z);
 		OutFile.WriteString(OutString);

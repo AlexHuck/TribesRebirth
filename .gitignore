@@ -7,7 +7,7 @@
 *.rsuser
 *.suo
 *.user
-!Tribes.vcxproj.user
+!*.vcxproj.user
 *.userosscache
 *.sln.docstates
 
