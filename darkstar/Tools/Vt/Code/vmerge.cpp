@@ -9,10 +9,12 @@
 //------------------------------------------------------------------------------
 
 #include <stdlib.h>
-#include <iostream.h>
+#include <iostream>
 
 #include <resManager.h>
 #include <volStrm.h>
+
+using namespace std;
 
 namespace {
 

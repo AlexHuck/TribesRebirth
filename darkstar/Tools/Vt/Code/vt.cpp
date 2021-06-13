@@ -24,7 +24,7 @@
 #include <conio.h>
 #include <string.h>
 #include <stdio.h>
-#include <iostream.h>
+#include <iostream>
 #ifdef MSVC
 #include <io.h>
 #else
@@ -36,6 +36,8 @@
 #include <streams.h>
 #include <g_bitmap.h>
 #include <ctype.h>  // needed for isspace()
+
+using namespace std;
 
 //--------------------------------------------------------------------------
 

@@ -95,6 +95,7 @@
     <ClCompile Include="darkstar\Interior\code\polyBSPClip.cpp" />
     <ClCompile Include="darkstar\Interior\code\tplane.cpp" />
     <ClCompile Include="darkstar\Interior\code\zedPersLight.cpp" />
+    <ClCompile Include="darkstar\Interior\code\zedSParse.cpp" />
     <ClCompile Include="darkstar\Ml\Code\m_coll.cpp" />
     <ClCompile Include="darkstar\Ml\Code\m_collision.cpp" />
     <ClCompile Include="darkstar\Ml\Code\m_euler.cpp" />
@@ -104,61 +105,6 @@
     <ClCompile Include="darkstar\Ml\Code\m_random.cpp" />
     <ClCompile Include="darkstar\Ml\Code\m_reduce.cpp" />
     <ClCompile Include="darkstar\Ml\Code\template.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\3DMWorld.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\asgntext.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\AsPalMat.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\BOrdrDlg.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\BrushAttributesDialog.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\BrushGroup.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\BrushGroupDialog.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\BspManagerDialog.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\bspnode.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\ChildFrm.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\ConstructiveBsp.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\CreateBoxDialog.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\CreateCylDialog.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\CreateSpheroidDialog.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\CreateStaircaseDialog.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\CreateTriDialog.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\DetailSettings.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\EntitiesDialog.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\Entity.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\GlobalEnvironment.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\GlobalSettingsDialog.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\GridSizeDialog.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\GroupView.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\ITRBuildOpt.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\ITRLightOpt.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\ITRShapeOpt.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\Light.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\LightBlankProp.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\LightDlg.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\LightEmitterProp.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\LightProp.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\LightPropertySheet.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\LightStateProp.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\LightView.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\MainFrm.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\Matcanvs.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\MaterialProperties.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\MatVuDlg.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\NewFDlg.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\ObjectView.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\ProgressBar.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\RenderCamera.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\SClrDlg.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\SelectClassname.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\Splitter.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\StdAfx.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\TextureView.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\THRED.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\ThredBrush.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\THREDDoc.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\ThredParser.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\THREDView.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\TransformMatrix.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\TSDialog.cpp" />
-    <ClCompile Include="darkstar\Tools\zed\VDescDlg.cpp" />
     <ClCompile Include="darkstar\Ts3\code\ts_BoundingBox.cpp" />
     <ClCompile Include="darkstar\Ts3\code\ts_camera.cpp" />
     <ClCompile Include="darkstar\Ts3\code\ts_CelAnimMesh.cpp" />
@@ -209,13 +155,10 @@
     <MASM Include="darkstar\Ml\Code\m_trig.asm" />
     <MASM Include="darkstar\Ts3\code\ts_fast.asm" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="darkstar\Tools\zed\THRED.rc" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{6afe31b9-6774-4293-b56d-e8e08bcbe8ae}</ProjectGuid>
+    <ProjectGuid>{b9c2e028-dcc2-494c-b5a2-938fad21a0ef}</ProjectGuid>
     <RootNamespace>Zed</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -274,7 +217,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;comctl32.lib;shell32.lib;advapi32.lib;uuid.lib;wsock32.lib;rpcrt4.lib;vfw32.lib;winmm.lib;ole32.lib;dsound.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <StackReserveSize>8000000</StackReserveSize>
